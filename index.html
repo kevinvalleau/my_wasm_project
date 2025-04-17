@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rust and WebAssembly</title>
+  </head>
+
+  <body>
+    <h1 id="greeting">Loading...</h1>
+    <script type="module">
+      console.log("Loading Wasm...");
+      import init, { greet } from "./pkg/my_wasm_project.js";
+
+      init()
+        .then(() => {
+          console.log("Wasm initialized successfully");
+          document.getElementById("greeting").innerText = greet();
+        })
+        .catch((error) => {
+          console.error("Error initializaing Wasm:", error);
+        });
+    </script>
+  </body>
+</html>
